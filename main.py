@@ -96,10 +96,11 @@ for v4 in downtime_datetime_list:
         api.update_status(status = message)
 
         # LINE
+        # LINEチャンネルのアクセストークン忘れた
 
-        line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
+        # line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
 
-        # LINE送信
-        line_bot_api.broadcast(messages = TextSendMessage(text = message))
+        # # LINE送信
+        # line_bot_api.broadcast(messages = TextSendMessage(text = message))
 
         break
