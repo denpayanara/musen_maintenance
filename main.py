@@ -4,11 +4,13 @@ import datetime
 import os
 import re
 import ssl
+import sys
 from urllib import request
 
 from bs4 import BeautifulSoup
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
+# import requests
 import tweepy
 
 url = 'https://www.tele.soumu.go.jp/j/new/emergency/index.htm'
@@ -59,6 +61,9 @@ if '停止期間' in downtime_str_0:
         for v3 in v2:
 
             downtime_datetime_list.append(datetime.datetime.strptime(v3, '%Y年%m月%d日').date())
+
+else:
+    sys.exit()
 
 # 今日の年月日を取得
 now = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
