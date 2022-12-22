@@ -3,20 +3,22 @@
 import datetime
 import os
 import re
+import ssl
+from urllib import request
 
 from bs4 import BeautifulSoup
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
-import requests
 import tweepy
 
 url = 'https://www.tele.soumu.go.jp/j/new/emergency/index.htm'
 
-header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Safari/605.1.15'}
+ctx = ssl.create_default_context()
 
-res = requests.get(url, headers=header)
+ctx.options |= 0x4
 
-soup = BeautifulSoup(res.content, 'html.parser', from_encoding='UTF-8')
+with request.urlopen(url, context=ctx) as res:
+    soup = BeautifulSoup(res.read(), 'html.parser', from_encoding='UTF-8')
 
 # システム停止期間のpタグ内に「停止期間」が含まれている場合実行
 
