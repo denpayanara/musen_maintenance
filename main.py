@@ -36,7 +36,7 @@ with request.urlopen(url, context=ctx) as res:
 # イレギュラーsample停止期間が複数
 # soup.select('p')[7].text
 
-downtime_str_0 = soup.select('p')[5].text
+downtime_str_0 = soup.select('p')[1].text
 
 if '停止期間' in downtime_str_0:
 
